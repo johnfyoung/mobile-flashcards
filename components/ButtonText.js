@@ -2,13 +2,14 @@ import React from 'react'
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { blue, white } from '../utils/colors';
 
-export default function ButtonText({ children, onPress, icon = '', style = {}, type = '' }) {
+export default function ButtonText({ children, onPress, icon = '', style = {}, buttonStyle = {}, type = '' }) {
     return (
         <TouchableOpacity
             onPress={onPress}
             style={[
                 styles.button,
-                (type === 'text' ? styles.buttonText : styles.buttonPrimary)
+                (type === 'text' ? styles.buttonText : styles.buttonPrimary),
+                buttonStyle,
             ]}>
             {icon ? icon : null}
             <Text style={[

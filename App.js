@@ -16,6 +16,7 @@ import ViewDeckList from './components/ViewDeckList';
 import ViewAddDeck from './components/ViewAddDeck';
 import ViewDeck from './components/ViewDeck';
 import ViewAddCard from './components/ViewAddCard';
+import ViewQuiz from './components/ViewQuiz';
 
 //const store = createStore(rootReducer, {}, compose(middleware, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
 const store = createStore(rootReducer, {}, composeWithDevTools(middleware));
@@ -82,12 +83,29 @@ const MainNavigator = createStackNavigator({
         backgroundColor: blue
       },
       headerRight: (<View></View>),
+      headerBackTitle: 'Decks'
     })
   },
   ViewAddCard: {
     screen: ViewAddCard,
     navigationOptions: ({ navigation }) => ({
       title: "Add a Card",
+      headerTintColor: white,
+      headerTitleStyle: {
+        textAlign: 'center',
+        flexGrow: 1,
+        alignSelf: 'center',
+      },
+      headerStyle: {
+        backgroundColor: blue
+      },
+      headerRight: (<View></View>),
+    })
+  },
+  ViewQuiz: {
+    screen: ViewQuiz,
+    navigationOptions: ({ navigation }) => ({
+      title: `${navigation.state.params.deck.name} Quiz`,
       headerTintColor: white,
       headerTitleStyle: {
         textAlign: 'center',

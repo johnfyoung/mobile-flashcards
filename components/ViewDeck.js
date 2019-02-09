@@ -33,21 +33,9 @@ class ViewDeck extends Component {
         const deckId = deck.id;
         return (
             <View style={styles.container}>
-                <View>
+                <View style={{ alignItems: 'center' }}>
                     <TextHeading style={{ marginTop: 30 }}>{deck.name}</TextHeading>
                     <Text style={styles.subheadText}>{deck.cards.length === 1 ? ('1 Card') : (`${deck.cards.length} Cards`)}</Text>
-                </View>
-                <View style={styles.buttons}>
-                    <ButtonText
-                        onPress={() => {
-                            Alert.alert('Starting Quiz', '')
-                        }}
-                        style={{
-                            fontSize: 18,
-                            paddingLeft: 1,
-                            paddingRight: 1
-                        }}
-                    >START QUIZ</ButtonText>
                     <ButtonText
                         onPress={() => {
                             navigation.navigate(
@@ -77,6 +65,31 @@ class ViewDeck extends Component {
                         }
                     >Delete this deck</ButtonText>
                 </View>
+                <View style={styles.buttons}>
+                    {deck.cards.length
+                        ? (
+                            <ButtonText
+                                onPress={() => {
+                                    navigation.navigate(
+                                        'ViewQuiz',
+                                        {
+                                            deck: deck
+                                        }
+                                    )
+                                }}
+                                style={{
+                                    fontSize: 18,
+                                    paddingLeft: 1,
+                                    paddingRight: 1
+                                }}
+                            >START QUIZ</ButtonText>
+                        )
+                        : (
+                            <Text>Add some cards to take a quiz!</Text>
+                        )}
+
+
+                </View>
             </View>
         )
     }
@@ -91,7 +104,8 @@ const styles = StyleSheet.create({
     subheadText: {
         textAlign: 'center',
         fontSize: 20,
-        color: grey
+        color: grey,
+        marginBottom: 30
     },
     buttons: {
         alignItems: 'center',
