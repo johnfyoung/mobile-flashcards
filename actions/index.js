@@ -3,7 +3,7 @@ export const ADD_DECK = "ADD_DECK";
 export const DELETE_DECK = "DELETE_DECK";
 export const ADD_CARD = "ADD_CARD";
 
-import { storeDeck } from '../utils/api';
+import { storeDeck, updateDeck } from '../utils/api';
 
 export function receiveDecks(decks) {
     return ({
@@ -43,5 +43,19 @@ export function addCard({ deckId, card }) {
         card,
         deckId
     });
+}
+
+export function addCardAsync({ deck, card, navigation }) {
+    let modDeck = { ...deck };
+    modDeck.cards.push(card);
+
+    return function (dispatch) {
+        return updateDeck(modDeck)
+            .then((deck) => {
+                const deckId = deck.id
+                dispatch(addCard({ deckId, card }));
+            })
+            .then(() => navigation.goBack())
+    }
 }
 

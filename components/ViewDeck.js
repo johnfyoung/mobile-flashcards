@@ -17,7 +17,7 @@ class ViewDeck extends Component {
                 </View>
                 <View style={styles.buttons}>
                     <ButtonText onPress={() => { Alert.alert('Starting Quiz', '') }}>START QUIZ</ButtonText>
-                    <ButtonText onPress={() => { Alert.alert('Add a card', '') }}>Add a card</ButtonText>
+                    <ButtonText onPress={() => { this.props.navigation.navigate('ViewAddCard', { deckId: deck.id }) }}>Add a card</ButtonText>
                 </View>
             </View>
         )

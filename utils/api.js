@@ -24,6 +24,14 @@ export function storeDeck(deckName) {
     });
 }
 
+export function updateDeck(deck) {
+    return AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify({
+        [deck.id]: deck
+    })).then(() => {
+        return deck;
+    });
+}
+
 export function removeDeck(key) {
     return AsyncStorage.getItem(DECK_STORAGE_KEY)
         .then((results) => {

@@ -39,9 +39,9 @@ class ViewDeckList extends Component {
                 {
                     isEmpty(decks)
                         ? (
-                            <View style={[styles.subContainer, { justfyContent: 'center' }]}>
-                                <Text style={{ fontSize: 26, color: grey, marginBottom: 20 }}>You have no decks.</Text>
-                                <Text>Click the "Add Deck" tab to start making decks.</Text>
+                            <View style={[styles.subContainer, { paddingTop: 30, justifyContent: 'center', alignItems: 'center' }]}>
+                                <TextHeading style={{ color: grey, marginBottom: 20 }}>You have no decks.</TextHeading>
+                                <Text style={{ textAlign: 'center', fontSize: 18 }}>Click the "Add Deck" tab to start making decks.</Text>
                             </View>
                         )
                         : (

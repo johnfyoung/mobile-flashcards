@@ -22,9 +22,9 @@ export default function decks(state = {}, action) {
         case ADD_CARD:
             return {
                 ...state,
-                [deckId]: {
-                    ...state[deckId],
-                    cards: state[deckId].cards.concat(card)
+                [action.deckId]: {
+                    ...state[action.deckId],
+                    cards: state[action.deckId].cards.concat(action.card)
                 }
             };
         default:

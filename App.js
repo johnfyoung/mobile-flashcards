@@ -15,6 +15,7 @@ import { blue, white, grey, lightGrey } from './utils/colors';
 import ViewDeckList from './components/ViewDeckList';
 import ViewAddDeck from './components/ViewAddDeck';
 import ViewDeck from './components/ViewDeck';
+import ViewAddCard from './components/ViewAddCard';
 
 //const store = createStore(rootReducer, {}, compose(middleware, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
 const store = createStore(rootReducer, {}, composeWithDevTools(middleware));
@@ -71,6 +72,22 @@ const MainNavigator = createStackNavigator({
     screen: ViewDeck,
     navigationOptions: ({ navigation }) => ({
       title: "View Deck",
+      headerTintColor: white,
+      headerTitleStyle: {
+        textAlign: 'center',
+        flexGrow: 1,
+        alignSelf: 'center',
+      },
+      headerStyle: {
+        backgroundColor: blue
+      },
+      headerRight: (<View></View>),
+    })
+  },
+  ViewAddCard: {
+    screen: ViewAddCard,
+    navigationOptions: ({ navigation }) => ({
+      title: "Add a Card",
       headerTintColor: white,
       headerTitleStyle: {
         textAlign: 'center',
