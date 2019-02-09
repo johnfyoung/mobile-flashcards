@@ -3,6 +3,8 @@ export const ADD_DECK = "ADD_DECK";
 export const DELETE_DECK = "DELETE_DECK";
 export const ADD_CARD = "ADD_CARD";
 
+import { storeDeck } from '../utils/api';
+
 export function receiveDecks(decks) {
     return ({
         type: RECEIVE_DECKS,
@@ -10,12 +12,23 @@ export function receiveDecks(decks) {
     });
 }
 
-export function addDecks(deckName) {
+function addDeck(deck) {
     return ({
         type: ADD_DECK,
-        deckName
+        deck
     });
 }
+
+export function addDeckAsync({ deckName, navigation }) {
+    return function (dispatch) {
+        return storeDeck(deckName)
+            .then((deck) => {
+                dispatch(addDeck(deck));
+            })
+            .then(() => navigation.navigate("Decks"))
+    }
+}
+
 
 export function deleteDeck(deckId) {
     return ({

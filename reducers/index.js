@@ -5,14 +5,17 @@ import {
     ADD_CARD
 } from '../actions';
 
-export function decks(state, action) {
+export default function decks(state = {}, action) {
     switch (action.type) {
         case RECEIVE_DECKS:
-            return action.decks;
+            return {
+                ...state,
+                ...action.decks
+            };
         case ADD_DECK:
             return {
                 ...state,
-                ...action.deck
+                [action.deck.id]: action.deck
             };
         case DELETE_DECK:
             return Object.keys(state).reduce((accum, curr) => (curr === accum.deckId ? accum[curr] = state[curr] : null), {});
@@ -24,5 +27,7 @@ export function decks(state, action) {
                     cards: state[deckId].cards.concat(card)
                 }
             };
+        default:
+            return state;
     }
 }
