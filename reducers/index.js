@@ -18,7 +18,12 @@ export default function decks(state = {}, action) {
                 [action.deck.id]: action.deck
             };
         case DELETE_DECK:
-            return Object.keys(state).reduce((accum, curr) => (curr === accum.deckId ? accum[curr] = state[curr] : null), {});
+            const filtered = Object.keys(state).filter((key) => key !== action.deckId);
+            const reduced = filtered.reduce((newState, key) => {
+                newState[key] = state[key];
+                return newState;
+            }, {});
+            return reduced;
         case ADD_CARD:
             return {
                 ...state,

@@ -2,25 +2,52 @@ import React from 'react'
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { blue, white } from '../utils/colors';
 
-export default function ButtonText({ children, onPress, style = {} }) {
+export default function ButtonText({ children, onPress, icon = '', style = {}, type = '' }) {
     return (
-        <TouchableOpacity onPress={onPress} style={styles.button}>
-            <Text style={[styles.text, style]}>{children}</Text>
+        <TouchableOpacity
+            onPress={onPress}
+            style={[
+                styles.button,
+                (type === 'text' ? styles.buttonText : styles.buttonPrimary)
+            ]}>
+            {icon ? icon : null}
+            <Text style={[
+                styles.label,
+                (type === 'text' ? styles.labelText : styles.labelPrimary),
+                style,
+                (icon
+                    ? {
+                        marginLeft: 10
+                    }
+                    : '')
+            ]}>{children}</Text>
         </TouchableOpacity>
     )
 }
 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: blue,
         padding: 10,
         paddingLeft: 23,
         paddingRight: 23,
         borderRadius: 5,
-        marginTop: 10
+        marginTop: 10,
+        flexDirection: 'row',
+        alignItems: 'center'
     },
-    text: {
-        color: white,
+    buttonPrimary: {
+        backgroundColor: blue,
+    },
+    buttonText: {
+        backgroundColor: white,
+    },
+    label: {
         textAlign: 'center'
+    },
+    labelPrimary: {
+        color: white,
+    },
+    labelText: {
+        color: blue
     }
 });

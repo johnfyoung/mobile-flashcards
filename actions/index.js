@@ -3,7 +3,7 @@ export const ADD_DECK = "ADD_DECK";
 export const DELETE_DECK = "DELETE_DECK";
 export const ADD_CARD = "ADD_CARD";
 
-import { storeDeck, updateDeck } from '../utils/api';
+import { storeDeck, updateDeck, removeDeck } from '../utils/api';
 
 export function receiveDecks(decks) {
     return ({
@@ -37,6 +37,16 @@ export function deleteDeck(deckId) {
     });
 }
 
+export function deleteDeckAsync({ deckId, navigation }) {
+    return function (dispatch) {
+        navigation.navigate("Decks");
+        return removeDeck(deckId)
+            .then(() => {
+                dispatch(deleteDeck(deckId));
+            })
+    }
+}
+
 export function addCard({ deckId, card }) {
     return ({
         type: ADD_CARD,
@@ -46,8 +56,9 @@ export function addCard({ deckId, card }) {
 }
 
 export function addCardAsync({ deck, card, navigation }) {
-    let modDeck = { ...deck };
-    modDeck.cards.push(card);
+    //let modDeck = { ...deck };
+    let modDeck = Object.assign({}, deck);
+    modDeck.cards = deck.cards.concat(card);
 
     return function (dispatch) {
         return updateDeck(modDeck)

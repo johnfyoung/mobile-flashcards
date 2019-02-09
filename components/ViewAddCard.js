@@ -17,11 +17,13 @@ class ViewAddCard extends Component {
     handleSubmit = () => {
         const card = this.state;
         const { deck, addCard } = this.props;
-        addCard({ deck, card, navigation: this.props.navigation });
-        this.setState({
-            question: '',
-            answer: ''
-        })
+        addCard({ deck, card, navigation: this.props.navigation })
+            .then(() => {
+                this.setState({
+                    question: '',
+                    answer: ''
+                })
+            });
     };
 
     handleChange = (field, text) => {
