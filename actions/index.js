@@ -24,8 +24,15 @@ export function addDeckAsync({ deckName, navigation }) {
         return storeDeck(deckName)
             .then((deck) => {
                 dispatch(addDeck(deck));
+
+                return deck;
             })
-            .then(() => navigation.navigate("Decks"))
+            .then((deck) => navigation.navigate({
+                routeName: "ViewDeck",
+                params: {
+                    deckId: deck.id
+                }
+            }));
     }
 }
 
