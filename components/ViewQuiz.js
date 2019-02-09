@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react'
-import { View, Text, TouchOpacity, Platform, StyleSheet } from 'react-native';
-import { Foundation } from '@expo/vector-icons';
+import { View, Text, StyleSheet } from 'react-native';
+import { MaterialIcons, Foundation, MaterialCommunityIcons } from '@expo/vector-icons';
 
-import { white, grey, blue, green, red, black } from '../utils/colors';
+import { white, grey, blue, green, red, black, lightBlue } from '../utils/colors';
 import TextHeading from './TextHeading';
 import ButtonText from './ButtonText';
 
@@ -27,6 +27,16 @@ export default class ViewQuiz extends Component {
             correctCount: answer === ANSWER_CORRECT ? ++state.correctCount : state.correctCount
         }));
     }
+
+    handleRestartQuiz = () => {
+        this.setState({
+            currentCardIndex: 0,
+            answeredCount: 0,
+            correctCount: 0,
+            isShowingAnswer: false,
+        });
+    }
+
     render() {
         const { navigation } = this.props;
         const { deck } = this.props.navigation.state.params;
@@ -46,11 +56,15 @@ export default class ViewQuiz extends Component {
                             </View>
                             <View style={styles.buttons}>
                                 <ButtonText
+                                    onPress={this.handleRestartQuiz}
+                                    icon={(<MaterialCommunityIcons name='restart' color={white} size={25} />)}
+                                >Restart Quiz</ButtonText>
+                                <ButtonText
                                     onPress={() => {
                                         navigation.goBack();
                                     }}
-                                    icon={(<Foundation name='checkbox' color={white} size={25} />)}
-                                >END QUIZ</ButtonText>
+                                    icon={(<MaterialIcons name='arrow-back' color={white} size={25} />)}
+                                >Back to Deck</ButtonText>
                             </View>
                         </Fragment>
                     )
@@ -60,7 +74,11 @@ export default class ViewQuiz extends Component {
                                 <Text style={styles.cardCounter}>{`${answeredCount + 1} of ${deck.cards.length}`}</Text>
                                 <TextHeading>{deck.cards[currentCardIndex].question}</TextHeading>
                                 {isShowingAnswer && (
-                                    <Text style={styles.answer}>{deck.cards[currentCardIndex].answer}</Text>
+                                    <View style={styles.answerContainer}>
+                                        <Text style={styles.answerLabel}>Answer:</Text>
+                                        <Text style={styles.answer}>{deck.cards[currentCardIndex].answer}</Text>
+                                    </View>
+
                                 )}
                             </View>
                             <View style={styles.buttons}>
@@ -72,6 +90,7 @@ export default class ViewQuiz extends Component {
                                                     isShowingAnswer: true
                                                 })
                                             }}
+                                            buttonStyle={{ alignSelf: 'center' }}
                                             icon={(<Foundation name='checkbox' color={white} size={25} />)}
                                         >CHECK ANSWER</ButtonText>
                                     )
@@ -125,6 +144,8 @@ const styles = StyleSheet.create({
     },
     questionContainer: {
         alignItems: 'center',
+        paddingLeft: 30,
+        paddingRight: 30
     },
     cardCounter: {
         color: grey,
@@ -133,11 +154,29 @@ const styles = StyleSheet.create({
     buttons: {
         marginBottom: 50,
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-between'
+    },
+    answerContainer: {
+        backgroundColor: lightBlue,
+        alignSelf: 'stretch',
+        borderColor: blue,
+        borderWidth: 1,
+        marginTop: 20,
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingTop: 10,
+        paddingBottom: 40
+    },
+    answerLabel: {
+        fontSize: 12,
+        alignSelf: 'flex-start',
+        color: grey,
+        marginBottom: 20,
     },
     answer: {
-        color: grey,
-        fontSize: 20
+        color: blue,
+        fontSize: 20,
+        textAlign: 'center'
     },
     gradingButtonsContainer: {
         flexDirection: 'row',

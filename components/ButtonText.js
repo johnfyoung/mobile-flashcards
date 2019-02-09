@@ -28,9 +28,9 @@ export default function ButtonText({ children, onPress, icon = '', style = {}, b
 
 const styles = StyleSheet.create({
     button: {
-        padding: 10,
-        paddingLeft: 23,
-        paddingRight: 23,
+        padding: 15,
+        paddingLeft: 28,
+        paddingRight: 28,
         borderRadius: 5,
         marginTop: 10,
         flexDirection: 'row',
@@ -43,7 +43,8 @@ const styles = StyleSheet.create({
         backgroundColor: white,
     },
     label: {
-        textAlign: 'center'
+        textAlign: 'center',
+        fontSize: 16
     },
     labelPrimary: {
         color: white,

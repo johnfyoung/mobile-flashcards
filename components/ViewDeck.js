@@ -87,8 +87,6 @@ class ViewDeck extends Component {
                         : (
                             <Text>Add some cards to take a quiz!</Text>
                         )}
-
-
                 </View>
             </View>
         )
@@ -98,6 +96,8 @@ class ViewDeck extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        paddingTop: 40,
+        paddingBottom: 100,
         backgroundColor: white,
         justifyContent: 'space-between'
     },
@@ -108,8 +108,7 @@ const styles = StyleSheet.create({
         marginBottom: 30
     },
     buttons: {
-        alignItems: 'center',
-        paddingBottom: 30,
+        alignItems: 'center'
     }
 });
 

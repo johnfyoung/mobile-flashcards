@@ -31,10 +31,10 @@ class ViewAddDeck extends Component {
         return (
             <View style={styles.container}>
                 <TextHeading>Add Deck</TextHeading>
-                <View>
+                <View style={styles.subContainer}>
                     <Text style={styles.label}>What is the name of this deck?</Text>
                     <TextInput style={styles.textInput} value={this.state.deckName} onChangeText={(text) => this.handleChange(text)} />
-                    <ButtonText onPress={this.handleSubmit}>SUBMIT</ButtonText>
+                    <ButtonText onPress={this.handleSubmit} buttonStyle={{ alignSelf: 'center', marginTop: 30 }}>SUBMIT</ButtonText>
                 </View>
             </View>
         )
@@ -45,24 +45,23 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 40,
-        marginLeft: 10,
-        marginRight: 10,
         backgroundColor: white
     },
     label: {
         fontSize: 16,
-        color: grey
+        color: grey,
+        marginBottom: 10,
     },
     subContainer: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginLeft: 10,
-        marginRight: 10
+        flex: 1,
+        alignItems: 'stretch',
+        paddingLeft: 30,
+        paddingRight: 30
     },
     textInput: {
+        padding: 10,
         borderWidth: 1,
         borderColor: grey,
-        padding: 10
     },
 
 });

@@ -58,6 +58,7 @@ class ViewDeckList extends Component {
                                             )}
                                         >
                                             <Text style={styles.cardName}>{item.item.name}</Text>
+                                            <Text style={styles.cardCount}>{item.item.cards.length === 1 ? '1 Card' : `${item.item.cards.length} Cards`}</Text>
                                         </TouchableOpacity>
                                     )}
                                     keyExtractor={(item) => item.id}
@@ -103,6 +104,12 @@ const styles = StyleSheet.create({
     cardName: {
         fontSize: 22,
         color: blue,
+        fontWeight: 'bold',
+        textAlign: 'center'
+    },
+    cardCount: {
+        fontSize: 19,
+        color: grey,
         textAlign: 'center'
     }
 });
