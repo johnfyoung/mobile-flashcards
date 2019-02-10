@@ -1,7 +1,21 @@
 # Mobile Flashcards
-
 A flash card app for iOS and Android buit with React Native.
 
+This app allowed users to create decks of flash cards that can be presented in a self-graded quiz. A study reminder notification will pop up at 5pm every day.
+
+All data is stored locally on the phone.
+
+## Testing
+
+This app was tested on:
+
+* Samsung Galaxy S7, Android 8.0.0 (actual device)  
+  All features are working.
+* Google Pixel 2, Android 8.0.0 (emulation, Android Studio)  
+  All features are working.
+* iPhone XR, (emulation, iPhone simulator)
+  Can't get notification to work. The emulator returns permissions back as 'undetermined'. [This is a known issue with expo](https://github.com/expo/expo/issues/516).
+  
 ## Specs
 
 * Use create-react-native-app
