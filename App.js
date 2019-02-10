@@ -17,6 +17,7 @@ import ViewAddDeck from './components/ViewAddDeck';
 import ViewDeck from './components/ViewDeck';
 import ViewAddCard from './components/ViewAddCard';
 import ViewQuiz from './components/ViewQuiz';
+import { setLocalNotification } from './utils/helpers';
 
 //const store = createStore(rootReducer, {}, compose(middleware, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
 const store = createStore(rootReducer, {}, composeWithDevTools(middleware));
@@ -121,6 +122,10 @@ const MainNavigator = createStackNavigator({
 })
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
+
   render() {
     return (
       <Provider store={store}>
